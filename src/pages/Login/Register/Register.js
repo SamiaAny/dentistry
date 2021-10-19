@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useLocation, useHistory } from 'react-router';
 import useAuth from '../../../hooks/useAuth';
 import login_img from '../../../images/undraw_authentication_fsn5.svg';
 
@@ -9,9 +8,6 @@ const Register = () => {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    // const history = useHistory();
-    // const location = useLocation();
-    // const redirectUri = location.state?.from || '/';
 
     const handleNameInput = (e) => {
         console.log(e.target.value);
@@ -37,10 +33,7 @@ const Register = () => {
     //call the google sign in method
     const handleGoogleLogin = (e) => {
         e.preventDefault();
-        signInUsingGoogle()
-        // .then(result => {
-        //     history.push(redirectUri);
-        // });
+        signInUsingGoogle();
     }
 
     return (

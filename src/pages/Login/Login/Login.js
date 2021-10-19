@@ -1,19 +1,12 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-// import { useHistory, useLocation } from 'react-router';
 import useAuth from '../../../hooks/useAuth';
 import login_img from '../../../images/undraw_authentication_fsn5.svg';
 
 const Login = () => {
-    const { signInUsingGoogle, handleUserLogin} = useAuth();
+    const { signInUsingGoogle, handleUserLogin, handlePasswordReset} = useAuth();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    // const location = useLocation();
-    // console.log(location?.state?.from);
-    // const history = useHistory();
-    // const redirectUri = location.state?.from || '/';
-
-
 
 
     const handleEmailInput = (e) => {
@@ -31,18 +24,17 @@ const Login = () => {
     const handleGoogleLogin = (e) => {
         e.preventDefault();
         signInUsingGoogle();
-        // .then(result => {
-        //         console.log(result.user);
-        //         // setUser(result.user);
-        //         history.push(redirectUri);
-        //     })
-        // .finally(()=>setIsLoading(false));
     }
 
     //call the login method using email and password
     const handleLogIn = (e) => {
         e.preventDefault();
         handleUserLogin(email, password);
+    }
+
+    //forget password
+    const handleForgetPassword = () => {
+        handlePasswordReset(email);
     }
     return (
         <div className="mt-5">
@@ -65,8 +57,8 @@ const Login = () => {
                             </div>
                             <div className="row mb-3">
                                 <div className="col-sm-10 offset-sm-2">
-                                    <div className="text-danger" style={{cursor:'pointer'}}>
-                                        <label>
+                                    <div className="text-danger">
+                                        <label onClick={handleForgetPassword} style={{cursor:'pointer'}}>
                                         Forget password?
                                         </label>
                                     </div>
@@ -77,7 +69,7 @@ const Login = () => {
                             {/* google sign in button */}
                             <button onClick={handleGoogleLogin} type="submit" className="btn btn-success">Sign in with Google</button>
                         </form>
-                        <p className="text-primary mt-2">New user? <Link to="/register">create account</Link></p>
+                        <p className="text-primary mt-2" >New user? <Link to="/register">create account</Link></p>
                     </div>
                     <div className="col-md-6">
                         <img className="img-fluid" src={login_img} alt="" />

@@ -8,7 +8,7 @@ const AllDoctors = () => {
     useEffect(()=>{
         fetch('./fake-service-data.json')
             .then(res => res.json())
-            .then(data => setServiceItem(data))
+            .then(data => setServiceItem(data));
     },[])
     return (
         <div>

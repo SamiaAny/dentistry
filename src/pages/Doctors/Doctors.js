@@ -4,9 +4,6 @@ import { Link } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 
 const Doctors = (props) => {
-    // console.log(props.doctors);
-    //const data = props.doctors;
-    //console.log(data);
     const {user} = useAuth();
     const { name, designation, doctorUrl } = props.doctors;
 

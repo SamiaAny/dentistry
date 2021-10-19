@@ -1,4 +1,14 @@
-import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged,createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile, signOut  } from "firebase/auth";
+import { 
+    getAuth, 
+    signInWithPopup, 
+    GoogleAuthProvider, 
+    onAuthStateChanged,
+    createUserWithEmailAndPassword, 
+    signInWithEmailAndPassword, 
+    updateProfile, 
+    sendPasswordResetEmail, 
+    sendEmailVerification,
+    signOut  } from "firebase/auth";
 import { useEffect, useState } from "react";
 import initializeAuth from "../pages/Login/Firebase/firebase.init";
 
@@ -12,11 +22,12 @@ const useFirebase = () => {
     const googleProvider = new GoogleAuthProvider();
     const auth = getAuth();
 
+    //google login
     const signInUsingGoogle = () => {
         setIsLoading(true);
         signInWithPopup(auth, googleProvider)
             .then(result => {
-                console.log(result.user);
+                // console.log(result.user);
                 setUser(result.user);
             }).catch(error=> {
                 console.log(error.message);
@@ -43,8 +54,9 @@ const useFirebase = () => {
         setIsLoading(true);
         createUserWithEmailAndPassword (auth, email, password)
             .then(result => {
-                console.log(result.user);
+                // console.log(result.user);
                 handleUserInfo(userName, userImg);
+                emailVerification();
                 setUser(result.user);
             }).catch(error=> {
                 console.log(error.message);
@@ -56,7 +68,7 @@ const useFirebase = () => {
         setIsLoading(true);
         signInWithEmailAndPassword(auth, email, password)
             .then(result => {
-                console.log(result.user);
+                // console.log(result.user);
                 setUser(result.user);
             }).catch(error=> {
                 console.log(error.message);
@@ -71,6 +83,26 @@ const useFirebase = () => {
             }).catch(error=> {
                 console.log(error.message);
             })
+    }
+
+    //password reset link 
+    const handlePasswordReset = (email) => {
+        sendPasswordResetEmail(auth, email)
+            .then(()=> {
+                alert('sent email for reset password');
+            }).catch(error=>{
+                console.log(error.message);
+            }) ; 
+    }
+
+    //verify email
+    const emailVerification = () => {
+        sendEmailVerification(auth.currentUser)
+            .then(()=>{
+                alert('Send email for verification');
+            }).catch(error=>{
+                console.log(error.message);
+            });
     }
 
     //signout method
@@ -89,6 +121,7 @@ const useFirebase = () => {
         signInUsingGoogle,
         handleUserRegistration,
         handleUserLogin,
+        handlePasswordReset,
         logOut
     }
 }

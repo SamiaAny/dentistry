@@ -1,7 +1,7 @@
 # Dentistry
 
- [Dentistry](https://dentistry-6a541.firebaseapp.com/).
- [another Link](https://dentistry-6a541.web.app/).
+ [Dentistry](https://dentistry-6a541.web.app/).
+ 
 
  Dentistry, a dental clinic where people can find best dental care.People can sign up and find the service make appointment.
 

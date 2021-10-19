@@ -1,0 +1,14 @@
+.error img {
+    height: 300px;
+}
+
+.error button {
+    position: relative;
+    left: 46%;
+}
+
+@media only screen and (max-width:688px) {
+    .error button {
+        left: 40%;
+    }
+}

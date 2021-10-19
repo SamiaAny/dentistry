@@ -1,0 +1,20 @@
+.footer-part {
+    /* height: 300px; */
+    background-color: black;
+    padding: 5% 10%;
+}
+
+.service-list {
+    padding-left: 0;
+}
+.service-list li {
+    list-style-type: none;
+}
+
+tr {
+    border-bottom: 1px solid #3d3939;
+}
+
+td {
+    margin-bottom: 10px;
+}
